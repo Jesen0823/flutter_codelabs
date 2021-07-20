@@ -27,7 +27,8 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text('You did it!'),
       ),
-      // TODO: Set resizeToAvoidBottomInset (101)
+      // 确保键盘的外观不会更改首页或其微件的大小
+      resizeToAvoidBottomInset: false,
     );
   }
 }
