@@ -24,21 +24,6 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  final _unfocusedColor = Colors.grey[600];
-  final _usernameFocusNode = FocusNode();
-  final _passwordFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-    _usernameFocusNode.addListener(() {
-      setState(() {});
-      _passwordFocusNode.addListener(() {
-        setState(() {});
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset(
-                  'assets/diamond.png',
-                  //color: kShrineBlack,
-                ),
+                Image.asset('assets/diamond.png'),
                 SizedBox(height: 16.0),
                 Text(
                   'SHRINE',
@@ -61,55 +43,55 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             SizedBox(height: 120.0),
-            TextField(
-              decoration: InputDecoration(
-                //filled: true,
-                labelText: 'UserName',
-                labelStyle: TextStyle(
-                    color: _usernameFocusNode.hasFocus
-                        ? Theme.of(context).accentColor
-                        : _unfocusedColor),
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                ),
               ),
-              focusNode: _usernameFocusNode,
-              controller: _usernameController,
             ),
-            SizedBox(
-              height: 12.0,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                //filled: true,
-                labelText: 'Password',
-                labelStyle: TextStyle(
-                    color: _passwordFocusNode.hasFocus
-                        ? Theme.of(context).accentColor
-                        : _unfocusedColor),
+            SizedBox(height: 12.0),
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+                obscureText: true,
               ),
-              focusNode: _passwordFocusNode,
-              controller: _passwordController,
-              obscureText: true,
             ),
             ButtonBar(
               children: <Widget>[
-                FlatButton(
+                TextButton(
+                  child: Text('CANCEL'),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
                     _usernameController.clear();
                     _passwordController.clear();
                   },
-                  child: Text('CANCEL'),
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                  ),
                 ),
-                RaisedButton(
+                ElevatedButton(
+                  child: Text('NEXT'),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(8.0),
+                    shape: MaterialStateProperty.all(
+                      BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('NEXT'),
-                  elevation: 8.0,
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                  ),
                 ),
               ],
             ),
@@ -120,4 +102,21 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// TODO: Add AccentColorOverride (103)
+class AccentColorOverride extends StatelessWidget {
+  const AccentColorOverride({Key? key, required this.color, required this.child})
+      : super(key: key);
+
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      child: child,
+      data: Theme.of(context).copyWith(
+        accentColor: color,
+        brightness: Brightness.dark,
+      ),
+    );
+  }
+}
