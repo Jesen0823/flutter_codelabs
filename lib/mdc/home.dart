@@ -14,6 +14,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_codelabs/mdc/supplemental/asymmetric_view.dart';
 
 import 'package:intl/intl.dart';
 import 'model/product.dart';
@@ -110,12 +111,15 @@ class HomePage extends StatelessWidget {
         ],
       ),
       // Add a grid view (102)
-      body: GridView.count(
+      /*body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         children: _buildGridCards(context),
-      ),
+      ),*/
+      // 非对称布局
+      body: AsymmetricView(products: ProductsRepository.loadProducts(Category.all)),
+
       // 确保键盘的外观不会更改首页或其微件的大小
       resizeToAvoidBottomInset: false,
     );
