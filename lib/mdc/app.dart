@@ -54,6 +54,7 @@ class ShrineApp extends StatelessWidget {
 // Build a Shrine Theme (103)
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
+/*
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
@@ -88,8 +89,9 @@ ThemeData _buildShrineTheme() {
     ),
   );
 }
+*/
 
-/*
+
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
@@ -131,8 +133,9 @@ ThemeData _buildShrineTheme() {
     ),
   );
 }
-*/
 
+
+/*
 TextTheme _buildShrineTextTheme(TextTheme base){
   return base.copyWith(
     headline5: base.headline5!.copyWith(
@@ -153,9 +156,10 @@ TextTheme _buildShrineTextTheme(TextTheme base){
     fontFamily: 'Rubik',
   );
 }
+*/
 
 // Build a Shrine Text Theme (103)
-/*TextTheme _buildShrineTextTheme(TextTheme base){
+TextTheme _buildShrineTextTheme(TextTheme base){
   return base.copyWith(
     headline5: base.headline5!.copyWith(
       fontWeight: FontWeight.w500,
@@ -176,4 +180,4 @@ TextTheme _buildShrineTextTheme(TextTheme base){
     displayColor: kShrineBrown900,
     bodyColor: kShrineBrown900,
   );
-}*/
+}

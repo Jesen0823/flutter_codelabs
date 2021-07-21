@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Image.asset(
                   'assets/diamond.png',
-                  color: kShrineBlack,
+                  //color: kShrineBlack,
                 ),
                 SizedBox(height: 16.0),
                 Text(
